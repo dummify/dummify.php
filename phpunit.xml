@@ -6,13 +6,13 @@
   stopOnFailure="false">
   <testsuites>
     <testsuite name="setup">
-      <file>./tests/setup.php</file>
+      <file>tests/setup.php</file>
     </testsuite>    
     <testsuite name="unit">
-      <directory suffix=".php">./tests/unit/</directory>
+      <directory suffix=".php">tests/unit/</directory>
     </testsuite>    
     <testsuite name="e2e">
-      <directory suffix=".php">./tests/e2e/</directory>
+      <directory suffix=".php">tests/e2e/</directory>
     </testsuite>
   </testsuites>
 </phpunit>
