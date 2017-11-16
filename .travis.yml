@@ -15,3 +15,5 @@ notifications:
 
 services:
   - docker
+
+before_script: composer install -o
