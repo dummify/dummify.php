@@ -1,0 +1,17 @@
+language: php
+
+php:
+  - '7.0'
+  - '7.1'
+  - '7.2'
+  - nightly
+
+sudo: false
+
+notifications:
+  email: false
+
+services:
+  - docker
+
+before_script: composer install -o
