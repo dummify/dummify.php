@@ -128,4 +128,15 @@ Than you can setup how the iterator will work over each line!
     });
 ```
 
-And in this case we will have a whole table of Frankensteins!
+And in this case we will have a whole table of Frankensteins! Or maybe you want to use another method using [Faker](https://github.com/fzaninotto/Faker)!
+
+```php
+  $faker = Faker\Factory::create();
+
+  $dummify
+    ->from('users')
+    ->do(function($line){
+      $line->name = $faker->name
+      $line->email = $faker->email
+    });
+```
