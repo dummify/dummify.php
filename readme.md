@@ -13,7 +13,7 @@ Dummify::connectTo(['driver' => 'sqlite', 'database' => ':memory:'])
   // (optional) you may add conditionals if you want
   // ->from('users', function($query){ return $query->where('name', 'like', '%Filipe%'); })
   // iterate over each line
-  ->do(function($line) {
+  ->each(function($line) {
     $line->name = 'generic name 2';
     $line->email = 'generic2@email.com';
     return $line;
@@ -138,7 +138,7 @@ Than you can setup how the iterator will work over each line!
 ```php
 $dummify
   ->from('users')
-  ->do(function($line){
+  ->each(function($line){
     $line->name = 'Frankenstein'
     $line->email = 'contact@franky.com'
   });
@@ -153,7 +153,7 @@ $faker = Faker\Factory::create();
 
 $dummify
   ->from('users')
-  ->do(function($line){
+  ->each(function($line){
     $line->name = $faker->name
     $line->email = $faker->email
   });

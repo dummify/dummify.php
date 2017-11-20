@@ -56,7 +56,7 @@ class Dummify
             $instance = static::getInstance();
         }
 
-        $instance->connection($params);
+        $instance->addConnection($params);
 
         return $instance;
     }
@@ -89,15 +89,6 @@ class Dummify
     /**
      * 
      */
-    public function connection($params)
-    {
-        $this->addConnection($params);
-        return $this->getConnection();
-    }
-
-    /**
-     * 
-     */
     public function from($table, Callable $callable = null)
     {
         $this->table = $table;
@@ -123,7 +114,7 @@ class Dummify
     /**
      * 
      */
-    public function do(Callable $callable)
+    public function each(Callable $callable)
     {
         $data = $this->getQuery()->get();
 
