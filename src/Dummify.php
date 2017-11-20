@@ -104,7 +104,7 @@ class Dummify
         $query = $this->capsule->table($this->table);
 
         $filter = $this->filter;
-        if(!is_null($filter)) {
+        if (!is_null($filter)) {
             $query = $filter($query);
         }
 
@@ -119,9 +119,9 @@ class Dummify
         $data = $this->getQuery()->get();
 
         $data->each(function ($row) use ($callable) {
-            $query = $this->getQuery();
-            $query->where((array) $row);
-            $query->update((array) $callable($row));
+            $this->getQuery()
+                ->where((array) $row)
+                ->update((array) $callable($row));
         });
     }
 }

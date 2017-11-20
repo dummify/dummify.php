@@ -56,6 +56,7 @@ class ConnectionTests extends TestCase
      * @covers Dummify\Dummify::connectTo
      * @covers Dummify\Dummify::from
      * @covers Dummify\Dummify::each
+     * @covers Dummify\Dummify::getQuery
      */
     function dummify_runs_over_a_table_with_conditionals($connection)
     {
