@@ -34,7 +34,7 @@ class DummifyTests extends TestCase
      * @covers ::getInstance
      * @covers ::initialize
      * @covers ::__construct
-     * @covers ::connection
+     * @covers ::addConnection
      */
     function dummify_can_be_created()
     {

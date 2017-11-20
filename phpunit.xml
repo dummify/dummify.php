@@ -14,8 +14,8 @@
     </filter>
     
     <logging>
-        <log type="coverage-html" target="temp/coverage/"/>
-        <log type="coverage-clover" target="temp/coverage/coverage.xml"/>
+        <log type="coverage-html" target="docs/coverage/"/>
+        <log type="coverage-clover" target="clover.xml"/>
     </logging>
 
     <testsuites>

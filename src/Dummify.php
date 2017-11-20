@@ -5,7 +5,7 @@ namespace Dummify;
 use Illuminate\Database\Capsule\Manager as DB;
 
 /**
- * 
+ * Dummify class
  */
 class Dummify
 {
@@ -18,16 +18,16 @@ class Dummify
     protected $filter;
 
     /**
-     * 
+     * Creates a single for Dummify
      */
-    static public function initialize()
+    public static function initialize()
     {
         $instance = new static;
         static::$instance = $instance;
     }
 
     /**
-     * 
+     * Constructor
      */
     public function __construct()
     {
@@ -37,7 +37,7 @@ class Dummify
     }
 
     /**
-     * 
+     * Returns Dummify's instance
      */
     public static function getInstance()
     {
@@ -45,32 +45,32 @@ class Dummify
     }
 
     /**
-     * 
+     * Initializes and defines connection
      */
     public static function connectTo($params)
     {
         $instance = static::getInstance();
 
-        if(is_null($instance)) {
+        if (is_null($instance)) {
             static::initialize();
             $instance = static::getInstance();
         }
 
-        $instance->connection($params);
+        $instance->addConnection($params);
 
         return $instance;
     }
 
     /**
-     * 
+     * Checks if there is a specific connection
      */
-    public function hasConnection($name)
+    public function hasConnection($name = 'default')
     {
         return isset($this->capsule->getDatabaseManager()->getConnections()[$name]);
     }
 
     /**
-     * 
+     * Adds a connection
      */
     public function addConnection($params)
     {
@@ -79,7 +79,7 @@ class Dummify
     }
 
     /**
-     * 
+     * Gets a connection
      */
     public function getConnection()
     {
@@ -87,18 +87,9 @@ class Dummify
     }
 
     /**
-     * 
+     * Selects a table and a passes a optional condition
      */
-    public function connection($params)
-    {
-        $this->addConnection($params);
-        return $this->getConnection();
-    }
-
-    /**
-     * 
-     */
-    public function from($table, Callable $callable = null)
+    public function from($table, callable $callable = null)
     {
         $this->table = $table;
         $this->filter = $callable;
@@ -106,7 +97,7 @@ class Dummify
     }
 
     /**
-     * 
+     * Creates a factory using the connection
      */
     protected function getQuery()
     {
@@ -121,13 +112,13 @@ class Dummify
     }
 
     /**
-     * 
+     * Iterates over each record
      */
-    public function do(Callable $callable)
+    public function each(callable $callable)
     {
         $data = $this->getQuery()->get();
 
-        $data->each(function($row) use ($callable) {
+        $data->each(function ($row) use ($callable) {
             $query = $this->getQuery();
             $query->where((array) $row);
             $query->update((array) $callable($row));
