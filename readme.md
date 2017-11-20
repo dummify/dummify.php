@@ -9,10 +9,10 @@ Programmatically dummifies your database to non-sensitive data for development u
 ```php
   Dummify::connectTo(['driver' => 'sqlite', 'database' => ':memory:'])
     // choose a table
-    ->from('users', function($query){ return $query->where('name', 'like', '%'); })
-    // you may add conditionals if you want
+    ->from('users')
+    // (optional) you may add conditionals if you want
     // ->from('users', function($query){ return $query->where('name', 'like', '%Filipe%'); })
-    // 
+    // iterate over each line
     ->do(function($line) {
       $line->name = 'generic name 2';
       $line->email = 'generic2@email.com';
