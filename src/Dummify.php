@@ -104,7 +104,7 @@ class Dummify
         $query = $this->capsule->table($this->table);
 
         $filter = $this->filter;
-        if(!is_null($filter)) {
+        if (!is_null($filter)) {
             $query = $filter($query);
         }
 

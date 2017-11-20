@@ -8,6 +8,8 @@
     <filter>
         <whitelist
             addUncoveredFilesFromWhitelist="true"
+            beStrictAboutTestsThatDoNotTestAnything="true"
+            checkForUnintentionallyCoveredCode="true"
             processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src/</directory>
         </whitelist>
