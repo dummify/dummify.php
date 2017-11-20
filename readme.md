@@ -144,7 +144,9 @@ $dummify
   });
 ```
 
-And in this case we will have a whole table of Frankensteins! Or maybe you want to use another method using [Faker](https://github.com/fzaninotto/Faker)!
+And in this case we will have a whole table of Frankensteins!
+
+Or maybe you want to use another method using [Faker](https://github.com/fzaninotto/Faker)!
 
 ```php
 $faker = Faker\Factory::create();
