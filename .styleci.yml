@@ -1,0 +1,15 @@
+preset: recommended
+
+risky: false
+
+linting: true
+
+disabled:
+  - concat_without_spaces
+  - phpdoc_summary
+
+finder:
+  name:
+    - "*.php"
+  not-path:
+    - "vendor"
