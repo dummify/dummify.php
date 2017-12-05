@@ -112,9 +112,20 @@ class Dummify
     }
 
     /**
-     * Iterates over each record
+     * Populates a table with a row generator.
      */
-    public function each(callable $callable)
+    public function insert(callable $callable, $number = 1)
+    {
+        while ($number-- > 0) {
+            $data = $callable((object) []);
+            $this->getQuery()->insert((array) $data);
+        }
+    }
+
+    /**
+     * Iterates over update record
+     */
+    public function update(callable $callable)
     {
         $data = $this->getQuery()->get();
 

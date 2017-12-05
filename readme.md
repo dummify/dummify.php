@@ -7,17 +7,26 @@ Programmatically dummifies your database to non-sensitive data for development u
 ### TL;DR
 
 ```php
-Dummify::connectTo(['driver' => 'sqlite', 'database' => ':memory:'])
-  // choose a table
-  ->from('users')
-  // (optional) you may add conditionals if you want
-  // ->from('users', function($query){ return $query->where('name', 'like', '%Filipe%'); })
-  // iterate over each line
-  ->each(function($line) {
-    $line->name = 'generic name 2';
-    $line->email = 'generic2@email.com';
-    return $line;
-  });
+// Use an array of parameters to connect to a database
+$connection = ['driver' => 'sqlite', 'database' => ':memory:'];
+
+// You may populate your database with dummy data
+Dummify::connectTo($connection)
+->from('users')
+->insert(function($row) {
+  $row->name = 'generic name 2';
+  $row->email = 'generic2@email.com';
+  return $row;
+});
+
+// Or you can dummify with a new rule
+Dummify::connectTo($connection)
+->from('users')
+->update(function($row) {
+  $row->name = 'generic name 2';
+  $row->email = 'generic2@email.com';
+  return $row;
+});
 ```
 
 ### Setup a connection
@@ -115,14 +124,41 @@ Once you have your connection array you can connect into your database using:
 $dummify = Dummify::connectTo($connection)
 ```
 
-### Iterate over a table
-
-You may choose a table using the `from($table)` method.
+Later you may choose a table using the `from($table)` method.
 
 ```php
 $dummify->from('users')
 ```
 
+### Populate a table with dummy data
+
+You may populate a table using the `insert($callable)` method:
+
+```php
+$dummify
+  ->from('users')
+  ->insert(function($row){
+    $row->name = 'Frankenstein'
+    $row->email = 'contact@franky.com'
+    return $row;
+  });
+```
+
+### Update a table with dummy data
+
+You may setup how the iterator will work over each line!
+
+```php
+$dummify
+  ->from('users')
+  ->update(function($row){
+    $row->name = 'Frankenstein'
+    $row->email = 'contact@franky.com'
+    return $row
+  });
+```
+
+#### Making restrictions for updates
 If you are interested on limiting or adding conditions to your SQL query, you can use all `Illuminate\Database` fluent syntax!
 
 For more docs about it follow-up with `Laravel` [docs](https://laravel.com/docs/5.5/queries);
@@ -131,17 +167,6 @@ For more docs about it follow-up with `Laravel` [docs](https://laravel.com/docs/
 $dummify->from('users', function($query) {
   $query->where('name', 'like', '%Filipe%');
 });
-```
-
-Than you can setup how the iterator will work over each line!
-
-```php
-$dummify
-  ->from('users')
-  ->each(function($line){
-    $line->name = 'Frankenstein'
-    $line->email = 'contact@franky.com'
-  });
 ```
 
 And in this case we will have a whole table of Frankensteins!
@@ -153,8 +178,9 @@ $faker = Faker\Factory::create();
 
 $dummify
   ->from('users')
-  ->each(function($line){
-    $line->name = $faker->name
-    $line->email = $faker->email
+  ->update(function($row){
+    $row->name = $faker->name
+    $row->email = $faker->email
+    return $row;
   });
 ```
