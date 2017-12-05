@@ -134,7 +134,7 @@ $dummify->from('users')
 
 ### Populate a table with dummy data
 
-You may populate a table using the `insert(callable $callable)` method. In this case we are using 
+You may populate a table using the `insert(callable $callable, $iterations = 1)` method. In this case we are using 
 [Faker](https://github.com/fzaninotto/Faker) to help us generate random data!
 
 ```php
@@ -147,11 +147,20 @@ $dummify
     $row->email = $faker->email
     return $row;
   });
+
+// (Optional) You can pass how many you want to create
+$dummify
+  ->from('users')
+  ->insert(function($row){
+    $row->name = $faker->name
+    $row->email = $faker->email
+    return $row;
+  }, 100);
 ```
 
 ### Update a table with dummy data
 
-You may setup how the iterator will work over each line!
+You may setup how the iterator will work over each line using the `update(callable $callable)` method!
 
 
 ```php
@@ -173,6 +182,6 @@ For more docs about it follow-up with `Laravel` [docs](https://laravel.com/docs/
 
 ```php
 $dummify->from('users', function($query) {
-  $query->where('name', 'like', '%Filipe%');
+  return $query->where('name', 'like', '%Filipe%');
 });
 ```
