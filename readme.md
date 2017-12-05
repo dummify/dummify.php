@@ -31,7 +31,7 @@ Dummify::connectTo($connection)
 
 ### Setup a connection
 
-Using `Illuminate\Database` capsule for database connections, `Dummify.php` can connect to:
+Using [`Illuminate\Database`](https://github.com/illuminate/database) capsule for database connections, `Dummify.php` can connect to:
 - MySQL
 - PostgreSQL
 - SQL Server
@@ -118,6 +118,8 @@ $connection = [
 ];
 ```
 
+### Instantiate a Dummify
+
 Once you have your connection array you can connect into your database using:
 
 ```php
@@ -132,14 +134,17 @@ $dummify->from('users')
 
 ### Populate a table with dummy data
 
-You may populate a table using the `insert($callable)` method:
+You may populate a table using the `insert(callable $callable)` method. In this case we are using 
+[Faker](https://github.com/fzaninotto/Faker) to help us generate random data!
 
 ```php
+$faker = Faker\Factory::create();
+
 $dummify
   ->from('users')
   ->insert(function($row){
-    $row->name = 'Frankenstein'
-    $row->email = 'contact@franky.com'
+    $row->name = $faker->name
+    $row->email = $faker->email
     return $row;
   });
 ```
@@ -148,30 +153,6 @@ $dummify
 
 You may setup how the iterator will work over each line!
 
-```php
-$dummify
-  ->from('users')
-  ->update(function($row){
-    $row->name = 'Frankenstein'
-    $row->email = 'contact@franky.com'
-    return $row
-  });
-```
-
-#### Making restrictions for updates
-If you are interested on limiting or adding conditions to your SQL query, you can use all `Illuminate\Database` fluent syntax!
-
-For more docs about it follow-up with `Laravel` [docs](https://laravel.com/docs/5.5/queries);
-
-```php
-$dummify->from('users', function($query) {
-  $query->where('name', 'like', '%Filipe%');
-});
-```
-
-And in this case we will have a whole table of Frankensteins!
-
-Or maybe you want to use another method using [Faker](https://github.com/fzaninotto/Faker)!
 
 ```php
 $faker = Faker\Factory::create();
@@ -181,6 +162,17 @@ $dummify
   ->update(function($row){
     $row->name = $faker->name
     $row->email = $faker->email
-    return $row;
+    return $row
   });
+```
+
+#### Making restrictions for updates
+If you are interested on limiting or adding conditions to your SQL query, you can use all `Illuminate\Database` fluent syntax!
+
+For more docs about it follow-up with `Laravel` [docs](https://laravel.com/docs/queries);
+
+```php
+$dummify->from('users', function($query) {
+  $query->where('name', 'like', '%Filipe%');
+});
 ```

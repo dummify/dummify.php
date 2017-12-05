@@ -39,7 +39,7 @@ class ConnectionTests extends TestCase
 
         Dummify::connectTo($connection)
             ->from('users')
-            ->populate(function ($row) {
+            ->insert(function ($row) {
                 $row->name = 'generic name 1';
                 $row->email = 'generic1@email.com';
                 return $row;
