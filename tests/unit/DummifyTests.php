@@ -16,7 +16,7 @@ class DummifyTests extends TestCase
     public static function setUpBeforeClass()
     {
         self::$connection = ['driver' => 'sqlite', 'database' => ':memory:'];
-        static::resetDatabaseUsingConnection(self::$connection);
+        static::useConnectionToResetAndPopulateDatabase(self::$connection);
     }
 
     /**

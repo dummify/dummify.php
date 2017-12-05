@@ -11,10 +11,7 @@ use Illuminate\Database\Capsule\Manager as DB;
  */
 trait ResetableTrait
 {
-    /**
-     * 
-     */
-    public static function resetDatabaseUsingConnection($connection)
+    public static function useConnectionToResetDatabase($connection)
     {
         $database = new DB;
         $database->addConnection($connection);
@@ -29,10 +26,18 @@ trait ResetableTrait
             $table->string('email');
             $table->timestamps();
         });
+    }
+
+    /**
+     * 
+     */
+    public static function useConnectionToResetAndPopulateDatabase($connection, $iterations = 100)
+    {
+        static::useConnectionToResetDatabase($connection);
 
         $faker = Factory::create();
 
-        for($i=0;$i<100; $i++) {
+        for($i=0; $i<$iterations; $i++) {
             User::forceCreate([
                 'name' => $faker->name,
                 'email' => $faker->email,
