@@ -1,8 +1,8 @@
 <?php
 
 use Dummify\Dummify;
-use PHPUnit\Framework\TestCase;
 use DummifyTests\Assets\ResetableTrait;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @coversDefaultClass \Dummify\Dummify
@@ -23,7 +23,7 @@ class DummifyTests extends TestCase
      * @test
      * @covers ::getInstance
      */
-    function dummify_not_created_yet()
+    public function dummify_not_created_yet()
     {
         $this->assertNull(Dummify::getInstance());
     }
@@ -36,7 +36,7 @@ class DummifyTests extends TestCase
      * @covers ::__construct
      * @covers ::addConnection
      */
-    function dummify_can_be_created()
+    public function dummify_can_be_created()
     {
         $this->assertInstanceOf(Dummify::class, Dummify::connectTo(self::$connection));
     }
