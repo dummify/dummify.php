@@ -9,8 +9,8 @@ use Illuminate\Database\Capsule\Manager as DB;
  */
 class Dummify
 {
-    static protected $instance;
-  
+    protected static $instance;
+
     protected $capsule;
 
     protected $table;
@@ -22,7 +22,7 @@ class Dummify
      */
     public static function initialize()
     {
-        $instance = new static;
+        $instance = new static();
         static::$instance = $instance;
     }
 
@@ -31,7 +31,7 @@ class Dummify
      */
     public function __construct()
     {
-        $this->capsule = new DB;
+        $this->capsule = new DB();
         $this->table = null;
         $this->filter = null;
     }
@@ -75,6 +75,7 @@ class Dummify
     public function addConnection($params)
     {
         $this->capsule->addConnection($params, 'default');
+
         return $this;
     }
 
@@ -93,6 +94,7 @@ class Dummify
     {
         $this->table = $table;
         $this->filter = $callable;
+
         return $this;
     }
 
@@ -112,9 +114,20 @@ class Dummify
     }
 
     /**
-     * Iterates over each record
+     * Populates a table with a row generator.
      */
-    public function each(callable $callable)
+    public function insert(callable $callable, $number = 1)
+    {
+        while ($number-- > 0) {
+            $data = $callable((object) []);
+            $this->getQuery()->insert((array) $data);
+        }
+    }
+
+    /**
+     * Iterates over update record
+     */
+    public function update(callable $callable)
     {
         $data = $this->getQuery()->get();
 
