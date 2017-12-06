@@ -2,7 +2,7 @@
 
 > Programmatically dummifies your database to non-sensitive data for development use!
 
-> [![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php) [![StyleCI](https://styleci.io/repos/111016957/shield?branch=master)](https://styleci.io/repos/111016957)
+[![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php) [![StyleCI](https://styleci.io/repos/111016957/shield?branch=master)](https://styleci.io/repos/111016957)
 
 ### TL;DR
 
