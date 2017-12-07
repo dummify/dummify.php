@@ -1,9 +1,16 @@
 checks:
-  php:
-    code_rating: true
-    duplication: true
+  php: true
+
+tools:
+  php_sim: true
+  php_pdepend: true
+  php_analyzer: true
+  php_cs_fixer: true
 
 build:
+  dependencies:
+    before:
+      - composer dump-autoload -o
   tests:
     override:
       -

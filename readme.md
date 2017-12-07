@@ -1,6 +1,6 @@
 ## Dummify.php
 
-[![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php) [![StyleCI](https://styleci.io/repos/111016957/shield?branch=master)](https://styleci.io/repos/111016957)
+[![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php) [![StyleCI](https://styleci.io/repos/111016957/shield?branch=master)](https://styleci.io/repos/111016957) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dummify/dummify.php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dummify/dummify.php/?branch=master)
 
 > Programmatically dummifies your database to non-sensitive data for development use!
 

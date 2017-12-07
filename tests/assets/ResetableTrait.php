@@ -1,6 +1,6 @@
 <?php
 
-namespace DummifyTests\Assets;
+namespace Dummify\Tests\Assets;
 
 use Faker\Factory;
 use Illuminate\Database\Capsule\Manager as DB;

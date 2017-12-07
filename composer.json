@@ -19,8 +19,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Dummify\\": "src/",
-      "DummifyTests\\": "tests/"
+      "Dummify\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dummify\\Tests\\": "tests/"
     }
   }
 }
