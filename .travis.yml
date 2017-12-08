@@ -27,7 +27,6 @@ before_script:
 script:
   - composer phpunit
   - composer phpcs
-  - composer phpstan
 
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
