@@ -27,15 +27,30 @@ Dummify::connectTo($connection)
   return $query->where('email', 'email@dummify.php'); // (Optional)
 })
 ->update(function ($row) {
-  $row->name = 'Dummify';
   $row->email = 'email2@dummify.php';
   return $row;
 })
 ```
 
+### Install Dummify
+
+Thanks to [Composer](https://getcomposer.org/) it is quite easy!
+
+```bash
+$ composer require --dev dummify/dummify.php
+```
+
+And on your code:
+
+```php
+include '/vendor/autoload.php';
+
+use Dummify\Dummify;
+```
+
 ### Setup a connection
 
-Using [`Illuminate\Database`](https://github.com/illuminate/database) capsule for database connections, `Dummify.php` can connect to:
+Using [`Illuminate\Database`](https://github.com/illuminate/database) capsule for database connections, `Dummify` can connect to:
 - MySQL
 - PostgreSQL
 - SQL Server
