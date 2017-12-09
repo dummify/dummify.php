@@ -1,7 +1,9 @@
 <?php
 
+namespace Dummify\Tests\Unit;
+
 use Dummify\Dummify;
-use DummifyTests\Assets\ResetableTrait;
+use Dummify\Tests\Assets\ResetableTrait;
 use PHPUnit\Framework\TestCase;
 
 /**

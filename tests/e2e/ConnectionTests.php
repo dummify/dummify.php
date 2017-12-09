@@ -1,8 +1,10 @@
 <?php
 
+namespace Dummify\Tests\E2e;
+
 use Dummify\Dummify;
-use DummifyTests\Assets\ResetableTrait;
-use DummifyTests\Assets\User;
+use Dummify\Tests\Assets\ResetableTrait;
+use Dummify\Tests\Assets\User;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,7 +32,7 @@ class ConnectionTests extends TestCase
      * @dataProvider getConnections
      * @covers Dummify\Dummify::connectTo
      * @covers Dummify\Dummify::from
-     * @covers Dummify\Dummify::update
+     * @covers Dummify\Dummify::insert
      */
     public function dummify_populates_a_table($connection)
     {

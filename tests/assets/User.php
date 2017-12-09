@@ -1,6 +1,6 @@
 <?php
 
-namespace DummifyTests\Assets;
+namespace Dummify\Tests\Assets;
 
 use Illuminate\Database\Eloquent\Model;
 

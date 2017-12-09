@@ -1,8 +1,8 @@
 ## Dummify.php
 
-[![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php)
+> Programmatically dummifies your database to non-sensitive data for development use!
 
-Programmatically dummifies your database to non-sensitive data for development use!
+[![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php) [![StyleCI](https://styleci.io/repos/111016957/shield?branch=master)](https://styleci.io/repos/111016957) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dummify/dummify.php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dummify/dummify.php/?branch=master)
 
 ### TL;DR
 
@@ -11,22 +11,26 @@ Programmatically dummifies your database to non-sensitive data for development u
 $connection = ['driver' => 'sqlite', 'database' => ':memory:'];
 
 // You may populate your database with dummy data
+$faker = Faker\Factory::create();
+
 Dummify::connectTo($connection)
 ->from('users')
 ->insert(function($row) {
-  $row->name = 'generic name 2';
-  $row->email = 'generic2@email.com';
+  $row->name = $faker->name;
+  $row->email = $faker->email;
   return $row;
 });
 
 // Or you can dummify with a new rule
 Dummify::connectTo($connection)
-->from('users')
-->update(function($row) {
-  $row->name = 'generic name 2';
-  $row->email = 'generic2@email.com';
+->from('users', function ($query) {
+  return $query->where('email', 'email@dummify.php'); // (Optional)
+})
+->update(function ($row) {
+  $row->name = 'Dummify';
+  $row->email = 'email2@dummify.php';
   return $row;
-});
+})
 ```
 
 ### Setup a connection

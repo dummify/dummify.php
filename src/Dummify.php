@@ -62,14 +62,6 @@ class Dummify
     }
 
     /**
-     * Checks if there is a specific connection
-     */
-    public function hasConnection($name = 'default')
-    {
-        return isset($this->capsule->getDatabaseManager()->getConnections()[$name]);
-    }
-
-    /**
      * Adds a connection
      */
     public function addConnection($params)
@@ -77,14 +69,6 @@ class Dummify
         $this->capsule->addConnection($params, 'default');
 
         return $this;
-    }
-
-    /**
-     * Gets a connection
-     */
-    public function getConnection()
-    {
-        return $this->capsule->connection('default');
     }
 
     /**
@@ -122,6 +106,8 @@ class Dummify
             $data = $callable((object) []);
             $this->getQuery()->insert((array) $data);
         }
+
+        return $this;
     }
 
     /**
@@ -136,5 +122,7 @@ class Dummify
                 ->where((array) $row)
                 ->update((array) $callable($row));
         });
+
+        return $this;
     }
 }
