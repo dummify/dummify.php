@@ -27,11 +27,19 @@ Dummify::connectTo($connection)
   return $query->where('email', 'email@dummify.php'); // (Optional)
 })
 ->update(function ($row) {
-  $row->name = 'Dummify';
   $row->email = 'email2@dummify.php';
   return $row;
 })
 ```
+
+### Installing
+
+Thanks to [Composer](https://getcomposer.org/) it is quite easy!
+
+```bash
+composer require --dev dummify/dummify.php
+```
+
 
 ### Setup a connection
 
