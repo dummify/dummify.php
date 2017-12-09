@@ -32,7 +32,7 @@ Dummify::connectTo($connection)
 })
 ```
 
-### Installing
+### Install Dummify
 
 Thanks to [Composer](https://getcomposer.org/) it is quite easy!
 
@@ -40,6 +40,13 @@ Thanks to [Composer](https://getcomposer.org/) it is quite easy!
 composer require --dev dummify/dummify.php
 ```
 
+And on your code:
+
+```php
+include '/vendor/autoload.php';
+
+use Dummify\Dummify;
+```
 
 ### Setup a connection
 
