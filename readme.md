@@ -50,7 +50,7 @@ use Dummify\Dummify;
 
 ### Setup a connection
 
-Using [`Illuminate\Database`](https://github.com/illuminate/database) capsule for database connections, `Dummify.php` can connect to:
+Using [`Illuminate\Database`](https://github.com/illuminate/database) capsule for database connections, `Dummify` can connect to:
 - MySQL
 - PostgreSQL
 - SQL Server
