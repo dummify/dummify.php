@@ -1,8 +1,8 @@
 ## Dummify.php
 
-[![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php) [![StyleCI](https://styleci.io/repos/111016957/shield?branch=master)](https://styleci.io/repos/111016957) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dummify/dummify.php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dummify/dummify.php/?branch=master)
-
 > Programmatically dummifies your database to non-sensitive data for development use!
+
+[![Build Status](https://travis-ci.org/dummify/dummify.php.svg?branch=master)](https://travis-ci.org/dummify/dummify.php) [![StyleCI](https://styleci.io/repos/111016957/shield?branch=master)](https://styleci.io/repos/111016957) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dummify/dummify.php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dummify/dummify.php/?branch=master)
 
 ### TL;DR
 
@@ -23,16 +23,10 @@ Dummify::connectTo($connection)
 
 // Or you can dummify with a new rule
 Dummify::connectTo($connection)
-->from('users')
-->update(function($row) {
-  $row->name = 'New name';
-  $row->email = 'email@dummify.php';
-  return $row;
+->from('users', function ($query) {
+  return $query->where('email', 'email@dummify.php'); // (Optional)
 })
-->from('users', function($query) {
-  return $query->where('email', 'email@dummify.php');
-})
-->update(function($row) {
+->update(function ($row) {
   $row->name = 'Dummify';
   $row->email = 'email2@dummify.php';
   return $row;
