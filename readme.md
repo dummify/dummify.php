@@ -37,7 +37,7 @@ Dummify::connectTo($connection)
 Thanks to [Composer](https://getcomposer.org/) it is quite easy!
 
 ```bash
-composer require --dev dummify/dummify.php
+$ composer require --dev dummify/dummify.php
 ```
 
 And on your code:
