@@ -106,6 +106,8 @@ class Dummify
             $data = $callable((object) []);
             $this->getQuery()->insert((array) $data);
         }
+
+        return $this;
     }
 
     /**
@@ -120,5 +122,7 @@ class Dummify
                 ->where((array) $row)
                 ->update((array) $callable($row));
         });
+
+        return $this;
     }
 }

@@ -11,11 +11,13 @@
 $connection = ['driver' => 'sqlite', 'database' => ':memory:'];
 
 // You may populate your database with dummy data
+$faker = Faker\Factory::create();
+
 Dummify::connectTo($connection)
 ->from('users')
 ->insert(function($row) {
-  $row->name = 'generic name 2';
-  $row->email = 'generic2@email.com';
+  $row->name = $faker->name;
+  $row->email = $faker->email;
   return $row;
 });
 
@@ -23,10 +25,18 @@ Dummify::connectTo($connection)
 Dummify::connectTo($connection)
 ->from('users')
 ->update(function($row) {
-  $row->name = 'generic name 2';
-  $row->email = 'generic2@email.com';
+  $row->name = 'New name';
+  $row->email = 'email@dummify.php';
   return $row;
-});
+})
+->from('users', function($query) {
+  return $query->where('email', 'email@dummify.php');
+})
+->update(function($row) {
+  $row->name = 'Dummify';
+  $row->email = 'email2@dummify.php';
+  return $row;
+})
 ```
 
 ### Setup a connection
